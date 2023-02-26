@@ -30,9 +30,9 @@ end
 
 local function getInterruptMessage(src, dest, spellId)
     local npcs = DXMT:GetNPCs();
-    if(DXMT.interruptsMode == "TERRIBLE_MODE") then
+    if(DXMT.db.profile.interruptsMode == "TERRIBLE_MODE") then
         return src .. " interupted ".. dest .. "'s " .. GetSpellLink(spellId);
-    elseif (DXMT.interruptsMode == "NOT_GOOD_MODE") then
+    elseif (DXMT.db.profile.interruptsMode == "NOT_GOOD_MODE") then
         return src .. " interupted ".. dest .. "'s " .. getSpell();
     else
         return src .. " interupted ".. npcs[math.random(1, table.getn(npcs))] .. "'s " .. getSpell();
@@ -40,7 +40,8 @@ local function getInterruptMessage(src, dest, spellId)
 end
 
 function DXMT:COMBAT_LOG_EVENT_UNFILTERED(self, event)
-    if(not DXMT.interruptsEnabled) then return end;
+    
+    if(not DXMT.db.profile.interruptsEnabled) then return end;
     if(not IsInInstance()) then return end;
 
     local _, subevent, _, sourceGUID, sourceName, _, _, _, destName = CombatLogGetCurrentEventInfo();

@@ -41,11 +41,6 @@ function DXMT:OnInitialize()
 	self.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("DXMT", "DXMT");
 	self:RegisterChatCommand("DXMT", "SlashCommand");
     self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
-
-    -- default values
-	self.interruptsEnabled = true;
-    self.isGay = true;
-    self.interruptsMode = 'GOOD_MODE';
 end
 
 function DXMT:OnEnable()
@@ -69,18 +64,17 @@ end
 
 -- Getters and Setters
 function DXMT:GetInteruptsEnabled(info)
-    return self.interruptsEnabled;
+    return self.db.profile.interruptsEnabled;
 end
 
 function DXMT:SetInteruptsEnabled(info, value)
-    self.interruptsEnabled = value;
+    self.db.profile.interruptsEnabled = value;
 end
 
 function DXMT:GetInterruptsMode(info)
-    return self.interruptsMode;
+    return self.db.profile.interruptsMode;
 end
 
 function DXMT:SetInterruptsMode(info, value)
-    print(value);
-    self.interruptsMode = value;
+    self.db.profile.interruptsMode = value;
 end

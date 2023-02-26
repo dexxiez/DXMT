@@ -3,7 +3,7 @@
 ## Title: |c00A0C66BDexxiez|r Cooked |c00FF0000MANDATORY|r Toolkit |c00767676[Sponsored by Raid Shadow Legends]|r
 ## Author: Dexxiez
 ## Notes: 
-## SavedVariables: DexxiezDB
+## SavedVariables: DXMTDB
 ## OptionalDeps: Ace3
 
 # Libraries
