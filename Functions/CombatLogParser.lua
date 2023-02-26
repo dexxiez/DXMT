@@ -60,8 +60,8 @@ function DXMT:COMBAT_LOG_EVENT_UNFILTERED(self, event)
                 return;
             end
 
-            if(UnitInRaid("player")) then
-                SendChatMessage(destName .. " FAILED THE {star}APTITUDE TEST{star}", "RAID");
+            if(UnitInParty("player")) then
+                SendChatMessage(destName .. " FAILED THE {star}APTITUDE TEST{star}", "PARTY");
                 return;
             end
             return;
@@ -72,14 +72,12 @@ function DXMT:COMBAT_LOG_EVENT_UNFILTERED(self, event)
             if(string.find(sourceGUID, "Pet-")) then
                 src = getPetOwner(sourceName);
             end
-            
-            if(UnitInParty("player")) then
-                SendChatMessage(getInterruptMessage(src, destName, spellId), "PARTY");
-                return;
-            end
-
             if(UnitInRaid("player")) then
                 SendChatMessage(getInterruptMessage(src, destName, spellId), "RAID");
+                return;
+            end
+            if(UnitInParty("player")) then
+                SendChatMessage(getInterruptMessage(src, destName, spellId), "PARTY");
                 return;
             end
             
