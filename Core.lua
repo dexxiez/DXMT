@@ -1,4 +1,4 @@
-DXMT = LibStub("AceAddon-3.0"):NewAddon("DXMT", "AceConsole-3.0", "AceEvent-3.0")
+DXMT = LibStub("AceAddon-3.0"):NewAddon("DXMT", "AceConsole-3.0", "AceEvent-3.0");
 
 local defaults = {
 	profile = {

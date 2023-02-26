@@ -11,11 +11,11 @@ scanTool:SetOwner( WorldFrame, "ANCHOR_NONE" );
 local scanText = _G["ScanTooltipTextLeft2"];
 
 local function getPetOwner(petName)
-    scanTool:ClearLines()
-    scanTool:SetUnit(petName)
-    local ownerText = scanText:GetText()
+    scanTool:ClearLines();
+    scanTool:SetUnit(petName);
+    local ownerText = scanText:GetText();
     if not ownerText then return nil end
-    local owner, _ = string.split("'",ownerText)
+    local owner, _ = string.split("'",ownerText);
     
     return owner -- This is the pet's owner
  end
