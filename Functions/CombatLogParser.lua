@@ -54,7 +54,10 @@ function DXMT:COMBAT_LOG_EVENT_UNFILTERED(self, event)
         local spellId = select(12, CombatLogGetCurrentEventInfo());
 
         -- Flame Jets
-        if(spellId == 62681) then
+        if(spellId == 62681 or spellId == 62437) then
+
+            if(destName == "Mirror Image") then return end
+            
             if(UnitInRaid("player")) then
                 SendChatMessage(destName .. " FAILED THE {star}APTITUDE TEST{star}", "RAID");
                 return;
