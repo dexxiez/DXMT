@@ -78,12 +78,10 @@ function DXMT:COMBAT_LOG_EVENT_UNFILTERED(self, event)
             if(UnitInRaid("player")) then
                 SendChatMessage(getInterruptMessage(src, destName, spellId), "RAID");
                 return;
-            end
-            if(UnitInParty("player")) then
+            elseif(UnitInParty("player")) then
                 SendChatMessage(getInterruptMessage(src, destName, spellId), "PARTY");
                 return;
-            end
-            
+			end
         end
     end
 end
