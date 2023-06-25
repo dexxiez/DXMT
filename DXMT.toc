@@ -1,4 +1,4 @@
-## Interface: 30401
+## Interface: 30402
 ## Version: 69.420.alpha
 ## Title: |c00A0C66BDexxiez|r Cooked |c00FF0000MANDATORY|r Toolkit |c00767676[Sponsored by Raid Shadow Legends]|r
 ## Author: Dexxiez
