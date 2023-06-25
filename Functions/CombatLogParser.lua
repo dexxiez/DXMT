@@ -1,10 +1,5 @@
 DXMT = LibStub("AceAddon-3.0"):GetAddon("DXMT");
 
-local SPELLS_MD = {
-    34477,
-    57934,
-    42833
-}
 
 local scanTool = CreateFrame( "GameTooltip", "ScanTooltip", nil, "GameTooltipTemplate" );
 scanTool:SetOwner( WorldFrame, "ANCHOR_NONE" );
@@ -53,23 +48,38 @@ function DXMT:COMBAT_LOG_EVENT_UNFILTERED(self, event)
     if subevent == "SPELL_INTERRUPT" then 
         local spellId = select(12, CombatLogGetCurrentEventInfo());
 
-        -- Flame Jets
+        -- --------------------------------------------------
+        -- Special cases
+        -- --------------------------------------------------
+
+        -- 62681 = Flame Jets
+        -- 62437 = Ground Tremor
         if(spellId == 62681 or spellId == 62437) then
 
             if(destName == "Mirror Image") then return end
             
             if(UnitInRaid("player")) then
-                SendChatMessage(destName .. " FAILED THE {star}APTITUDE TEST{star}", "RAID");
-                return;
-            end
-
-            if(UnitInParty("player")) then
-                SendChatMessage(destName .. " FAILED THE {star}APTITUDE TEST{star}", "PARTY");
+                SendChatMessage(destName .. " FAILED THE {star} APTITUDE TEST {star}", "RAID");
                 return;
             end
             return;
         end
 
+        -- 66330 = Staggering Stomp
+        if(spellId == 66330) then
+            if(destName == "Mirror Image") then return end
+            
+            if(UnitInRaid("player")) then
+                SendChatMessage(destName .. " FAILED THE {star} STOMP-TITUDE TEST {star}", "RAID");
+                return;
+            end
+            return;
+        end
+
+        -- --------------------------------------------------
+        -- Troll interupt messages
+        -- --------------------------------------------------
+        
         if(string.find(sourceGUID, "Player-" or string.find(sourceGUID, "Pet-"))) then
             local src = sourceName;
             if(string.find(sourceGUID, "Pet-")) then
@@ -78,10 +88,7 @@ function DXMT:COMBAT_LOG_EVENT_UNFILTERED(self, event)
             if(UnitInRaid("player")) then
                 SendChatMessage(getInterruptMessage(src, destName, spellId), "RAID");
                 return;
-            elseif(UnitInParty("player")) then
-                SendChatMessage(getInterruptMessage(src, destName, spellId), "PARTY");
-                return;
-			end
+            end
         end
     end
 end
